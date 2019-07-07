@@ -1,7 +1,8 @@
 const Router = require('koa-router')
-const router = new Router()
 const ExpensesController = require('../controllers/expenses')
 
-router.get('/', ExpensesController.hello)
+const router = new Router()
+
+router.get('/', ExpensesController.all)
 
 module.exports = router.routes()

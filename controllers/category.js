@@ -1,5 +1,9 @@
-function hello (ctx) {
-  ctx.ok('Hello from category')
+const Category = require('../models/category.model')
+
+class CategoryController {
+  async all (ctx) {
+    ctx.body = await Category.find()
+  }
 }
 
-module.exports = { hello }
+module.exports = new CategoryController()

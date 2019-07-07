@@ -1,5 +1,9 @@
-function hello (ctx) {
-  ctx.ok('Hello from expenses')
+const Expense = require('../models/expense.model')
+
+class ExpenseController {
+  async all (ctx) {
+    ctx.body = await Expense.find()
+  }
 }
 
-module.exports = { hello }
+module.exports = new ExpenseController()

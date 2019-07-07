@@ -12,5 +12,3 @@ mongoose.connection.once('open', () => {
 
 const port = process.env.PORT || 3000
 server.listen(port, () => console.log(`API server started on ${port}`))
-
-// TODO: structuring based on https://github.com/dbalas/koalerplate
