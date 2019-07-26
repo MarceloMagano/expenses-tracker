@@ -6,4 +6,4 @@ const router = new Router()
 router.get('/', ExpensesController.all)
 router.get( '/:id', ExpensesController.expenseById)
 
-module.exports = router.routes()
+module.exports = router

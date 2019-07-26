@@ -1,7 +1,12 @@
 const Router = require('koa-router')
-const router = new Router()
 const CategoryController = require('../controllers/category')
 
-router.get('/', CategoryController.all)
+const router = new Router()
+router.prefix('/api/category')
 
-module.exports = router.routes()
+// GET /api/category
+router.get('/', CategoryController.all)
+// POST /api/category
+router.post('/', CategoryController.create)
+
+module.exports = router
