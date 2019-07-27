@@ -5,7 +5,7 @@ const server = require('./server')
 
 // db connection
 const uri = process.env.DB_URI
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true })
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
 mongoose.connection.once('open', () => {
   console.log('MongoDB connection established successfully')
 })

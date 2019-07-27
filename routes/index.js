@@ -8,6 +8,8 @@ const routesLoader = require('../utils/routesLoader')
 
 /*
  * https://github.com/jsnomad/koa-restful-boilerplate
+ * 
+ * looks for all js files, except index.js, in the directory for routes 
  */
 module.exports = function (app) {
   routesLoader(`${__dirname}`).then(files => {
