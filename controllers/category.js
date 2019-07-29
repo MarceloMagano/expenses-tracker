@@ -25,11 +25,11 @@ class CategoryController {
 
   /**
    * Delete Category by Id
-   * @param {ctx} Koa Context 
+   * @param {ctx} Koa Context
    */
   async delete(ctx) {
     try {
-      const category = await Category.findByIdAndRemove(ctx.request.query.id)
+      const category = await Category.findByIdAndRemove(ctx.params.id)
       if (!category) {
         ctx.throw(404)
       }

@@ -6,7 +6,7 @@ const expenseSchema = new Schema({
   amount: { type: Number, required: true },
   category: { type: String, required: true },
   date: { type: Date, required: true },
-  username: { type: String, required: true }
+  email: { type: String, required: true }
 })
 
 const Expense = mongoose.model('Expense', expenseSchema)
