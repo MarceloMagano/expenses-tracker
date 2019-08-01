@@ -3,19 +3,17 @@ const Expense = require('../models/expense.model')
 class ExpenseController {
   /**
    * Get all
-   * @param ctx Koa Context
-   * @returns {Promise<void>}
+   * @param {*} ctx Koa Context
    */
-  async all(ctx) {
+  async all (ctx) {
     ctx.body = await Expense.find()
   }
 
   /**
    * Get Expense by Id
-   * @param ctx Koa context
-   * @returns {Promise<void>}
+   * @param {*} ctx Koa context
    */
-  async expenseById(ctx) {
+  async expenseById (ctx) {
     try {
       ctx.body = await Expense.findById(ctx.params.id)
     } catch (err) {
@@ -28,29 +26,28 @@ class ExpenseController {
 
   /**
    * Create New Expense
-   * @param {ctX} Koa Context
+   * @param {*} ctx Koa Context
    */
-  async createExpense(ctx) {
+  async createExpense (ctx) {
     try {
       ctx.body = await new Expense(ctx.request.body).save()
     } catch (err) {
-      ctx.throw(422)
+      ctx.throw(400, 'Invalid Data')
     }
   }
 
   /**
    * Edit Expense
-   * @param {ctx} Koa Context
+   * @param {*} ctx Koa Context
    */
-  async editExpense(ctx) {
+  async editExpense (ctx) {
     try {
       const expense = await Expense.findByIdAndUpdate(ctx.params.id, ctx.request.body)
       if (!expense) {
         ctx.throw(404)
       }
       ctx.body = expense
-    }
-    catch (err) {
+    } catch (err) {
       if (err.name === 'CastError' || err.name === 'NotFoundError') {
         ctx.throw(404)
       }
@@ -58,12 +55,11 @@ class ExpenseController {
     }
   }
 
-
   /**
    * Delete expense
-   * @param {ctx} Koa Context
+   * @param {*} ctx Koa Context
    */
-  async delete(ctx) {
+  async delete (ctx) {
     try {
       const expense = await Expense.findByIdAndRemove(ctx.params.id)
       if (!expense) {

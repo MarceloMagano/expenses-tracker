@@ -7,7 +7,7 @@ router.prefix('/api/expense')
 // GET /api/expense
 router.get('/', ExpensesController.all)
 // GET /api/expense/id
-router.get( '/:id', ExpensesController.expenseById)
+router.get('/:id', ExpensesController.expenseById)
 // POST /api/expense
 router.post('/', ExpensesController.createExpense)
 // PUT /api/expense/id

@@ -6,28 +6,27 @@ class CategoryController {
    * @param {ctx} Koa Context
    * @returns {Promise<void>}
    */
-  async all(ctx) {
+  async all (ctx) {
     ctx.body = await Category.find()
   }
 
   /**
    * Create new Category
-   * @param {ctx} Koa Context
-   * @returns {Promise<void>}
+   * @param {*} ctx Koa Context
    */
-  async create(ctx) {
+  async create (ctx) {
     try {
       ctx.body = await new Category(ctx.request.body).save()
     } catch (err) {
-      ctx.throw(422)
+      ctx.throw(400, 'Invalid Data')
     }
   }
 
   /**
    * Delete Category by Id
-   * @param {ctx} Koa Context
+   * @param {*} ctx Koa Context
    */
-  async delete(ctx) {
+  async delete (ctx) {
     try {
       const category = await Category.findByIdAndRemove(ctx.params.id)
       if (!category) {

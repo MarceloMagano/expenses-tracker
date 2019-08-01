@@ -14,8 +14,8 @@ module.exports = function (dirname) {
         }
         files.forEach(file => {
           const route = require(file) // eslint-disable-line global-require, import/no-dynamic-require
-          routes.push(route);
-        });
+          routes.push(route)
+        })
         return resolve(routes)
       }
     )
