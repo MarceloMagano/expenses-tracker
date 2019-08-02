@@ -6,7 +6,8 @@ class ExpenseController {
    * @param {*} ctx Koa Context
    */
   async all (ctx) {
-    ctx.body = await Expense.find()
+    const user = ctx.state.user.email
+    ctx.body = await Expense.find({ email: user })
   }
 
   /**
@@ -15,7 +16,8 @@ class ExpenseController {
    */
   async expenseById (ctx) {
     try {
-      ctx.body = await Expense.findById(ctx.params.id)
+      const expsense = await Expense.findById(ctx.params.id)
+      ctx.body = expsense && expsense.email === ctx.state.user.email ? expsense : {}
     } catch (err) {
       if (err.name === 'CastError' || err.name === 'NotFoundError') {
         ctx.throw(404)

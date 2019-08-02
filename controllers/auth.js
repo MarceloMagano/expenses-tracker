@@ -34,12 +34,12 @@ class AuthController {
       }
       // validate password
       if (!await bcrypt.compare(ctx.request.body.password, user.password)) {
-        ctx.throw(400, 'Invalid Credentials')
+        ctx.throw(401, 'Invalid Credentials')
       }
-      // TODO: generate jwt
-      const token = jsonwebtoken.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION })
+      // generate jwt
+      const token = jsonwebtoken.sign({ email: user.email }, process.env.JWT_SECRET)
 
-      ctx.body = users
+      ctx.body = { token, message: 'Login with success' }
     } catch (err) {
       if (err.name === 'CastError' || err.name === 'NotFoundError') {
         ctx.throw(404)
