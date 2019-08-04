@@ -38,10 +38,12 @@ export default {
         password: this.password
       }
       if (this.password.length > 0) {
-        axios.post(`${server.baseUrl}/auth/login`, user).then(data => {
-          router.push({ name: 'home' })
-        })
         // post login
+        axios.post(`${server.baseUrl}/auth/login`, user)
+          .then(data => { console.log(data.data.token) })
+          .then(data => {
+            router.push({ name: 'home' })
+          })
         // set jwt to localStorage
       }
     }
