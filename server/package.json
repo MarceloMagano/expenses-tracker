@@ -4,8 +4,9 @@
   "description": "expenses-tracker",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "test": "npm run mocha",
+    "start": "nodemon index.js",
+    "mocha": "./node_modules/.bin/mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,9 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "mocha": "6.2.0",
+    "chai": "4.2.0",
+    "supertest": "4.0.2"
   }
 }
