@@ -21,7 +21,7 @@
 <script>
 import axios from 'axios'
 import { server } from '../../helper'
-import router from '../../router'
+// import router from '../../router'
 
 export default {
   data () {
@@ -40,11 +40,20 @@ export default {
       if (this.password.length > 0) {
         // post login
         axios.post(`${server.baseUrl}/auth/login`, user)
-          .then(data => { console.log(data.data.token) })
           .then(data => {
-            router.push({ name: 'home' })
+            localStorage.setItem('jwt', data.data.token)
+            if (localStorage.getItem('jwt') != null) {
+              this.$emit('loggedIn')
+              if (this.$route.params.nextUrl != null) {
+                this.$router.push(this.$route.params.nextUrl)
+              } else {
+                this.$router.push('expenses')
+              }
+            }
           })
-        // set jwt to localStorage
+          .catch(err => {
+            console.error(err)
+          })
       }
     }
   }
